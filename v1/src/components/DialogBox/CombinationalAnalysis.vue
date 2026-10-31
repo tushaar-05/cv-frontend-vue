@@ -25,7 +25,7 @@
 import { stripTags } from '#/simulator/src/utils'
 import { useState } from '#/store/SimulatorStore/state'
 import messageBox from '@/MessageBox/messageBox.vue'
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 
 /* imports from combinationalAnalysis.js */
 import { GenerateCircuit, solveBooleanFunction } from '#/simulator/src/combinationalAnalysis'
@@ -34,14 +34,6 @@ const SimulatorState = useState()
 onMounted(() => {
     SimulatorState.dialogBox.combinationalanalysis_dialog = false
 })
-watch(
-    () => SimulatorState.dialogBox.combinationalanalysis_dialog,
-    (isOpen) => {
-        if (!isOpen) {
-            clearData()
-        }
-    }
-)
 const inputArr = ref([{}])
 const buttonArr = ref([{}])
 const showAlert = ref(false)
@@ -139,6 +131,10 @@ function dialogBoxConformation(selectedOption, circuitItem) {
         tableHeader.value = []
         tableBody.value = []
         output.value = []
+        outputListNames.value = []
+        outputListNamesInteger.value = []
+        inputListNames.value = []
+        outputStartCol.value = 0
         buttonArr.value = buttonArray
     }
     if (selectedOption == 'closeMessageBox') {
@@ -244,6 +240,7 @@ function createBooleanPrompt(inputList, outputList, scope = globalScope) {
         inputList || prompt('Enter inputs separated by commas').split(',')
     outputListNames.value =
         outputList || prompt('Enter outputs separated by commas').split(',')
+    outputListNamesInteger.value = []
     if (output.value == null) {
         for (var i = 0; i < outputListNames.value.length; i++) {
             outputListNamesInteger.value[i] = 7 * i + 13

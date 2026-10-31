@@ -51,17 +51,4 @@ function cycleValue(rowIndex: number, colIndex: number) {
     width: 100%;
     overflow-x: auto;
 }
-
-.content-table {
-    margin: 0 auto;
-}
-
-:deep(.content-table tbody) {
-    margin-left: 0 !important;
-    margin: 0 auto;
-}
-
-:deep(.content-table tbody tr) {
-    justify-content: center;
-}
 </style>
