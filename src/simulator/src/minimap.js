@@ -74,17 +74,8 @@ export default miniMapArea = {
         this.canvas.height += 5
         this.canvas.width += 5
 
-        const miniMapEl = document.getElementById('miniMap')
-        if (miniMapEl) {
-            const nextHeight = `${this.canvas.height}px`
-            const nextWidth = `${this.canvas.width}px`
-            if (miniMapEl.style.height !== nextHeight) {
-                miniMapEl.style.height = nextHeight
-            }
-            if (miniMapEl.style.width !== nextWidth) {
-                miniMapEl.style.width = nextWidth
-            }
-        }
+        document.getElementById('miniMap').style.height = this.canvas.height
+        document.getElementById('miniMap').style.width = this.canvas.width
         this.ctx = this.canvas.getContext('2d')
         this.play(ratio)
     },

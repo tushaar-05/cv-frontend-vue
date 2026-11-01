@@ -299,14 +299,12 @@ export function renderCanvas(scope) {
         ctx.stroke()
         ctx.fill()
     }
-    const newCursor =
-        simulationArea.hover !== undefined
-            ? 'pointer'
-            : simulationArea.mouseDown
-              ? 'grabbing'
-              : 'default'
-    if (simulationArea.canvas.style.cursor !== newCursor) {
-        simulationArea.canvas.style.cursor = newCursor
+    if (simulationArea.hover !== undefined) {
+        simulationArea.canvas.style.cursor = 'pointer'
+    } else if (simulationArea.mouseDown) {
+        simulationArea.canvas.style.cursor = 'grabbing'
+    } else {
+        simulationArea.canvas.style.cursor = 'default'
     }
 }
 

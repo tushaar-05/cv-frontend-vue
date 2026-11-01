@@ -209,8 +209,8 @@ const plotArea = {
     },
     update() {
         this.resize()
-        var dangerColor = 'rgb(220, 86, 86)'
-        var normalColor = 'rgb(66, 185, 131)'
+        var dangerColor = '#dc5656'
+        var normalColor = '#42b983'
         this.unitUsed = Math.max(
             this.unitUsed,
             simulationArea.simulationQueue.time
@@ -226,18 +226,14 @@ const plotArea = {
             var recommendedUnit = Math.max(20, Math.round(unitUsed * 3))
             if (logEl) {
                 logEl.insertAdjacentHTML('beforeend', ` Recommended Units: ${recommendedUnit}`)
-                if (logEl.style.backgroundColor !== dangerColor) {
-                    logEl.style.backgroundColor = dangerColor
-                }
+                logEl.style.backgroundColor = dangerColor
             }
             if (utilization >= 100) {
                 this.clear()
                 return
             }
         } else {
-            if (logEl && logEl.style.backgroundColor !== normalColor) {
-                logEl.style.backgroundColor = normalColor
-            }
+            if (logEl) logEl.style.backgroundColor = normalColor
         }
 
         var width = this.width
@@ -264,10 +260,8 @@ const plotArea = {
     },
     render() {
         var { width, height } = this
-        const canvasHeight = Math.trunc(height)
-        const canvasWidth = Math.trunc(width)
-        if (this.canvas.height !== canvasHeight) this.canvas.height = canvasHeight
-        if (this.canvas.width !== canvasWidth) this.canvas.width = canvasWidth
+        this.canvas.height = height
+        this.canvas.width = width
         var endTime = this.getCurrentTime()
         // Reset canvas
         this.clear()
