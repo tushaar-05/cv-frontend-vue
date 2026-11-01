@@ -14,7 +14,7 @@ import { writeTextFile } from "@tauri-apps/plugin-fs";
 import { join, downloadDir } from "@tauri-apps/api/path";
 import { isTauri } from "@tauri-apps/api/core";
 
-(window as any).globalScope = undefined;
+window.globalScope = undefined;
 window.lightMode = false; // To be deprecated
 window.projectId = undefined;
 window.id = undefined;
